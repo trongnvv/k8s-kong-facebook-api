@@ -34,7 +34,7 @@ app.use([health, bundle]);
 /**
  *  Tracing api
  */
-app.use(tracing(initTracer('trongnv_auth')));
+app.use(tracing(initTracer('service_auth')));
 
 app.use(`/${process.env.ROUTING}`, routers);
 app.use([notFoundHandle, errorHandle]);
