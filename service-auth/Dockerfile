@@ -1,7 +1,7 @@
-FROM node:13
-RUN mkdir /app
-WORKDIR /app
-ADD ./package.json /app/
+FROM node:14.17.0-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install --production
-COPY . /app
-CMD [ "npm", "index.js" ]
+COPY . .
+EXPOSE 8031
+CMD [ "npm", "start" ]
