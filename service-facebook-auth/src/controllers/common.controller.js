@@ -77,6 +77,7 @@ const getObjectFBs = async (req, res, next) => {
 const getOverall = async (req, res, next) => {
   const { isClone } = req.query;
   const { user } = req;
+  console.log(user);
   if (isClone) await facebookService.clonePageMulti(req);
   const rs = await UserFacebookModel.aggregate()
     .match({ userID: user.userId, isRemoved: false })
