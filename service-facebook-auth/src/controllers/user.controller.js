@@ -8,6 +8,7 @@ const facebookService = require('../services/fb.service');
 
 const getFacebooks = async (req, res, next) => {
   const { user } = req;
+  console.log("user", user);
   let listUserFB = await UserFacebookModel
     .find({
       userID: user.userId,

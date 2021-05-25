@@ -17,7 +17,7 @@
     "format": "prettier --write \"src/**/*.js\" \"__tests__/**/*.js\""
   },
   "dependencies": {
-    "@trongnv/backend-helper": "0.0.1",
+    "@trongnv/backend-helper": "0.0.3",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: service-facebook-auth
 spec:
-  type: NodePort
   ports:
     - port: 8032
       targetPort: 8032
-      nodePort: 31032
+      name: http
+      protocol: TCP
   selector:
     app: service-facebook-auth
 ---
