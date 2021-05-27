@@ -1,0 +1,7 @@
+bases:
+  - ../base
+resources:
+  - migration.yaml
+  - postgres.yaml
+patchesStrategicMerge:
+  - deployment.yaml
