@@ -25,7 +25,7 @@ spec:
             ]
       containers:
         - name: kong-migrations
-          image: kong/kong-gateway:2.4.1.0-alpine
+          image: kong:2.4
           env:
             - name: KONG_PG_PASSWORD
               value: kong

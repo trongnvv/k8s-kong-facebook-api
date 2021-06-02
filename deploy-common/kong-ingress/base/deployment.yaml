@@ -38,42 +38,42 @@ spec:
             - name: KONG_DATABASE
               value: "off"
               # runtime tweaks
-            # - name: KONG_NGINX_WORKER_PROCESSES
-            #   value: "2"
-            # - name: KONG_ADMIN_GUI_URL
-            #   value: http://kong-proxy:8002
+            - name: KONG_NGINX_WORKER_PROCESSES
+              value: "2"
+            - name: KONG_ADMIN_GUI_URL
+              value: http://local-gateway.live:8002
             # logging
-          # - name: KONG_ADMIN_ACCESS_LOG
-          #   value: /dev/stdout
-          # - name: KONG_ADMIN_ERROR_LOG
-          #   value: /dev/stderr
-          # - name: KONG_PROXY_ACCESS_LOG
-          # - value: /dev/stdout
-          # - name: KONG_PROXY_ERROR_LOG
-          #   value: /dev/stderr
+            - name: KONG_ADMIN_ACCESS_LOG
+              value: /dev/stdout
+            - name: KONG_ADMIN_ERROR_LOG
+              value: /dev/stderr
+            - name: KONG_PROXY_ACCESS_LOG
+              value: /dev/stdout
+            - name: KONG_PROXY_ERROR_LOG
+              value: /dev/stderr
           lifecycle:
             preStop:
               exec:
                 command: ["/bin/sh", "-c", "kong quit"]
-          ports:
-            - containerPort: 8000
-              name: proxy
-              protocol: TCP
-            - containerPort: 8443
-              name: proxy-ssl
-              protocol: TCP
-            # - containerPort: 8001
-            #   name: proxy-admin
-            #   protocol: TCP
-            - containerPort: 8444
-              name: proxy-admin-ssl
-              protocol: TCP
-            # - containerPort: 8002
-            #   name: proxy-admin-gui
-            #   protocol: TCP
-            - containerPort: 8100
-              name: metrics
-              protocol: TCP
+          # ports:
+          #   - containerPort: 8000
+          #     name: proxy
+          #     protocol: TCP
+          #   - containerPort: 8443
+          #     name: proxy-ssl
+          #     protocol: TCP
+          #   # - containerPort: 8001
+          #   #   name: proxy-admin
+          #   #   protocol: TCP
+          #   - containerPort: 8444
+          #     name: proxy-admin-ssl
+          #     protocol: TCP
+          #   # - containerPort: 8002
+          #   #   name: proxy-admin-gui
+          #   #   protocol: TCP
+          #   - containerPort: 8100
+          #     name: metrics
+          #     protocol: TCP
           livenessProbe:
             httpGet:
               path: /status

@@ -11,30 +11,30 @@ spec:
     kind: KongPlugin
     plural: kongplugins
     shortNames:
-    - kp
+      - kp
   additionalPrinterColumns:
-  - name: Plugin-Type
-    type: string
-    description: Name of the plugin
-    JSONPath: .plugin
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  - name: Disabled
-    type: boolean
-    description: Indicates if the plugin is disabled
-    JSONPath: .disabled
-    priority: 1
-  - name: Config
-    type: string
-    description: Configuration of the plugin
-    JSONPath: .config
-    priority: 1
+    - name: Plugin-Type
+      type: string
+      description: Name of the plugin
+      JSONPath: .plugin
+    - name: Age
+      type: date
+      description: Age
+      JSONPath: .metadata.creationTimestamp
+    - name: Disabled
+      type: boolean
+      description: Indicates if the plugin is disabled
+      JSONPath: .disabled
+      priority: 1
+    - name: Config
+      type: string
+      description: Configuration of the plugin
+      JSONPath: .config
+      priority: 1
   validation:
     openAPIV3Schema:
       required:
-      - plugin
+        - plugin
       properties:
         plugin:
           type: string
@@ -47,8 +47,8 @@ spec:
           properties:
             secretKeyRef:
               required:
-              - name
-              - key
+                - name
+                - key
               type: object
               properties:
                 name:
@@ -58,20 +58,20 @@ spec:
         run_on:
           type: string
           enum:
-          - first
-          - second
-          - all
+            - first
+            - second
+            - all
         protocols:
           type: array
           items:
             type: string
             enum:
-            - http
-            - https
-            - grpc
-            - grpcs
-            - tcp
-            - tls
+              - http
+              - https
+              - grpc
+              - grpcs
+              - tcp
+              - tls
   subresources:
     status: {}
 
@@ -88,30 +88,30 @@ spec:
     kind: KongClusterPlugin
     plural: kongclusterplugins
     shortNames:
-    - kcp
+      - kcp
   additionalPrinterColumns:
-  - name: Plugin-Type
-    type: string
-    description: Name of the plugin
-    JSONPath: .plugin
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
-  - name: Disabled
-    type: boolean
-    description: Indicates if the plugin is disabled
-    JSONPath: .disabled
-    priority: 1
-  - name: Config
-    type: string
-    description: Configuration of the plugin
-    JSONPath: .config
-    priority: 1
+    - name: Plugin-Type
+      type: string
+      description: Name of the plugin
+      JSONPath: .plugin
+    - name: Age
+      type: date
+      description: Age
+      JSONPath: .metadata.creationTimestamp
+    - name: Disabled
+      type: boolean
+      description: Indicates if the plugin is disabled
+      JSONPath: .disabled
+      priority: 1
+    - name: Config
+      type: string
+      description: Configuration of the plugin
+      JSONPath: .config
+      priority: 1
   validation:
     openAPIV3Schema:
       required:
-      - plugin
+        - plugin
       properties:
         plugin:
           type: string
@@ -124,9 +124,9 @@ spec:
           properties:
             secretKeyRef:
               required:
-              - name
-              - namespace
-              - key
+                - name
+                - namespace
+                - key
               type: object
               properties:
                 namespace:
@@ -138,20 +138,20 @@ spec:
         run_on:
           type: string
           enum:
-          - first
-          - second
-          - all
+            - first
+            - second
+            - all
         protocols:
           type: array
           items:
             type: string
             enum:
-            - http
-            - https
-            - grpc
-            - grpcs
-            - tcp
-            - tls
+              - http
+              - https
+              - grpc
+              - grpcs
+              - tcp
+              - tls
   subresources:
     status: {}
 
@@ -168,16 +168,16 @@ spec:
     kind: KongConsumer
     plural: kongconsumers
     shortNames:
-    - kc
+      - kc
   additionalPrinterColumns:
-  - name: Username
-    type: string
-    description: Username of a Kong Consumer
-    JSONPath: .username
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
+    - name: Username
+      type: string
+      description: Username of a Kong Consumer
+      JSONPath: .username
+    - name: Age
+      type: date
+      description: Age
+      JSONPath: .metadata.creationTimestamp
   validation:
     openAPIV3Schema:
       properties:
@@ -205,7 +205,7 @@ spec:
     kind: KongIngress
     plural: kongingresses
     shortNames:
-    - ki
+      - ki
   validation:
     openAPIV3Schema:
       properties:
@@ -230,19 +230,19 @@ spec:
             path_handling:
               type: string
               enum:
-              - "v0"
-              - "v1"
+                - "v0"
+                - "v1"
             protocols:
               type: array
               items:
                 type: string
                 enum:
-                - http
-                - https
-                - grpc
-                - grpcs
-                - tcp
-                - tls
+                  - http
+                  - https
+                  - grpc
+                  - grpcs
+                  - tcp
+                  - tls
             https_redirect_status_code:
               type: integer
             snis:
@@ -259,12 +259,12 @@ spec:
             protocol:
               type: string
               enum:
-              - http
-              - https
-              - grpc
-              - grpcs
-              - tcp
-              - tls
+                - http
+                - https
+                - grpc
+                - grpcs
+                - tcp
+                - tls
             path:
               type: string
               pattern: ^/.*$
@@ -286,9 +286,9 @@ spec:
             algorithm:
               type: string
               enum:
-              - "round-robin"
-              - "consistent-hashing"
-              - "least-connections"
+                - "round-robin"
+                - "consistent-hashing"
+                - "least-connections"
             host_header:
               type: string
             hash_on:
@@ -375,14 +375,14 @@ spec:
     kind: TCPIngress
     plural: tcpingresses
   additionalPrinterColumns:
-  - name: Address
-    type: string
-    description: Address of the load balancer
-    JSONPath: .status.loadBalancer.ingress[*].ip
-  - name: Age
-    type: date
-    description: Age
-    JSONPath: .metadata.creationTimestamp
+    - name: Address
+      type: string
+      description: Address of the load balancer
+      JSONPath: .status.loadBalancer.ingress[*].ip
+    - name: Age
+      type: date
+      description: Age
+      JSONPath: .metadata.creationTimestamp
   validation:
     openAPIV3Schema:
       properties:

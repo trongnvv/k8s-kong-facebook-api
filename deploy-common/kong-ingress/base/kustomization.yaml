@@ -4,4 +4,5 @@ resources:
   - rbac.yaml
   - service.yaml
   - validation-service.yaml
+  - deployment-new.yaml
   - ingress.yaml
