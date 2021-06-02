@@ -3,5 +3,5 @@ bases:
 resources:
   - migration.yaml
   - postgres.yaml
-patchesStrategicMerge:
+  # patchesStrategicMerge:
   - deployment.yaml

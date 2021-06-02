@@ -10,7 +10,7 @@ metadata:
 spec:
   ports:
     - name: proxy
-      port: 80
+      port: 8000
       protocol: TCP
       targetPort: 8000
     # - name: proxy-ssl
@@ -18,15 +18,15 @@ spec:
     #   protocol: TCP
     #   targetPort: 8443
     - name: proxy-admin
-      port: 81
+      port: 8001
       protocol: TCP
       targetPort: 8001
     # - name: proxy-admin-ssl
     #   port: 444
     #   protocol: TCP
     #   targetPort: 8444
-    - name: proxy-admin-gui
-      port: 82
+    - name: gui-admin
+      port: 8002
       protocol: TCP
       targetPort: 8002
   selector:
