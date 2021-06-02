@@ -6,9 +6,9 @@ metadata:
   namespace: kong
 spec:
   ports:
-  - name: webhook
-    port: 443
-    protocol: TCP
-    targetPort: 8080
+    - name: webhook
+      port: 443
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: ingress-kong

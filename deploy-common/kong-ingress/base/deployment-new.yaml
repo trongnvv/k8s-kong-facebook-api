@@ -32,7 +32,7 @@ spec:
             - name: KONG_PORT_MAPS
               value: "80:8000, 443:8443"
             - name: KONG_ADMIN_LISTEN
-              value: 127.0.0.1:8444 ssl
+              value: 0.0.0.0:8001, 0.0.0.0:8444 ssl
             - name: KONG_STATUS_LISTEN
               value: 0.0.0.0:8100
               # DB
@@ -50,6 +50,8 @@ spec:
             # - value: /dev/stdout
             - name: KONG_PROXY_ERROR_LOG
               value: /dev/stderr
+            - name: KONG_ADMIN_GUI_LISTEN
+              value: 0.0.0.0:8002, 0.0.0.0:8445 ssl
             - name: KONG_ADMIN_GUI_URL
               value: http://local-gateway.live:8002
           lifecycle:

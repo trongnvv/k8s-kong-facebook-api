@@ -3,5 +3,6 @@ bases:
 resources:
   - migration.yaml
   - postgres.yaml
+  - konga.yaml
 patchesStrategicMerge:
   - deployment-root.yaml

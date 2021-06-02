@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: konga
+  namespace: kong
+spec:
+  type: NodePort
+  ports:
+    - name: konga-proxy
+      port: 1337
+      targetPort: 1337
+      protocol: TCP
+  selector:
+    app: konga
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konga
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konga
+  template:
+    metadata:
+      labels:
+        name: konga
+        app: konga
+    spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          env:
+            - name: KONG_PG_HOST
+              value: postgres
+            - name: KONG_PG_PORT
+              value: "5432"
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done",
+            ]
+      containers:
+        - name: konga
+          image: pantsel/konga
+          # ports:
+          #   - containerPort: 1337
+          env:
+            - name: DB_URI
+              value: "postgresql://kong:kong@postgres:5432/konga"
