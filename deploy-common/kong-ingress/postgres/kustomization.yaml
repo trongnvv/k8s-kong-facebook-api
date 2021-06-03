@@ -2,6 +2,7 @@ bases:
   - ../base
 resources:
   - migration.yaml
+  - migration-konga.yaml
   - postgres.yaml
   - konga.yaml
 patchesStrategicMerge:

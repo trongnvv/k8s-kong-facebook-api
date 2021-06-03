@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: konga-migrations
+  namespace: kong
+spec:
+  template:
+    metadata:
+      name: konga-migrations
+    spec:
+      initContainers:
+        - name: wait-for-postgres
+          image: busybox
+          env:
+            - name: KONG_PG_HOST
+              value: postgres
+            - name: KONG_PG_PORT
+              value: "5432"
+          command:
+            [
+              "/bin/sh",
+              "-c",
+              "until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done",
+            ]
+      containers:
+        - name: konga-prepare
+          image: pantsel/konga
+          command:
+            # [
+            #   "/bin/bash start.sh -c prepare -a postgres -u postgresql://kong:kong@postgres:5432/konga",
+            # ]
+            [
+              "/bin/bash",
+              "start.sh",
+              "-c",
+              "prepare",
+              "-a postgres",
+              "-u postgresql://kong:kong@postgres:5432/konga",
+            ]
+      restartPolicy: OnFailure

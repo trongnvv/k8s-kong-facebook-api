@@ -36,3 +36,24 @@ spec:
   selector:
     app: ingress-kong
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  name: kong-admin
+  namespace: kong
+spec:
+  ports:
+    - name: proxy
+      port: 8001
+      protocol: TCP
+      targetPort: 8001
+    - name: proxy-ssl
+      port: 444
+      protocol: TCP
+      targetPort: 8444
+  selector:
+    app: ingress-kong

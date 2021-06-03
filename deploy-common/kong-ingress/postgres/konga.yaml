@@ -29,7 +29,7 @@ spec:
         name: konga
         app: konga
     spec:
-      initContainers:
+      initContainers: # TODO
         - name: wait-for-postgres
           image: busybox
           env:
@@ -49,5 +49,17 @@ spec:
           # ports:
           #   - containerPort: 1337
           env:
-            - name: DB_URI
-              value: "postgresql://kong:kong@postgres:5432/konga"
+            - name: DB_ADAPTER
+              value: postgres
+            - name: DB_HOST
+              value: postgres
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: kong
+            - name: DB_PASSWORD
+              value: kong
+            - name: DB_DATABASE
+              value: konga
+            - name: NODE_ENV
+              value: production
