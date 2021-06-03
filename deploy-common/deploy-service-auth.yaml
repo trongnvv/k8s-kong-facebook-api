@@ -16,6 +16,7 @@ kind: Deployment
 metadata:
   name: service-auth
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: service-auth

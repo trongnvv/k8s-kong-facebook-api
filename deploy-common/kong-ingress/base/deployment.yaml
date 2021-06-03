@@ -24,7 +24,7 @@ spec:
       serviceAccountName: kong-serviceaccount
       containers:
         - name: proxy
-          image: kong/kong-gateway:2.4.1.0-alpine
+          image: kong:2.4
           env:
             # servers
             - name: KONG_PROXY_LISTEN
@@ -35,44 +35,38 @@ spec:
               value: 0.0.0.0:8001, 0.0.0.0:8444 ssl
             - name: KONG_STATUS_LISTEN
               value: 0.0.0.0:8100
+              # DB
             - name: KONG_DATABASE
               value: "off"
               # runtime tweaks
             - name: KONG_NGINX_WORKER_PROCESSES
               value: "2"
-            - name: KONG_ADMIN_GUI_URL
-              value: http://local-gateway.live:8002
-            # logging
+              # logging
             - name: KONG_ADMIN_ACCESS_LOG
               value: /dev/stdout
             - name: KONG_ADMIN_ERROR_LOG
               value: /dev/stderr
-            - name: KONG_PROXY_ACCESS_LOG
-              value: /dev/stdout
+            # - name: KONG_PROXY_ACCESS_LOG
+            # - value: /dev/stdout
             - name: KONG_PROXY_ERROR_LOG
               value: /dev/stderr
+            - name: KONG_ADMIN_GUI_LISTEN
+              value: 0.0.0.0:8002, 0.0.0.0:8445 ssl
+            - name: KONG_ADMIN_GUI_URL
+              value: http://local-gateway.live:8002
           lifecycle:
             preStop:
               exec:
                 command: ["/bin/sh", "-c", "kong quit"]
           # ports:
-          #   - containerPort: 8000
-          #     name: proxy
+          #   - name: proxy
+          #     containerPort: 8000
           #     protocol: TCP
-          #   - containerPort: 8443
-          #     name: proxy-ssl
+          #   - name: proxy-ssl
+          #     containerPort: 8443
           #     protocol: TCP
-          #   # - containerPort: 8001
-          #   #   name: proxy-admin
-          #   #   protocol: TCP
-          #   - containerPort: 8444
-          #     name: proxy-admin-ssl
-          #     protocol: TCP
-          #   # - containerPort: 8002
-          #   #   name: proxy-admin-gui
-          #   #   protocol: TCP
-          #   - containerPort: 8100
-          #     name: metrics
+          #   - name: metrics
+          #     containerPort: 8100
           #     protocol: TCP
           livenessProbe:
             httpGet:
@@ -112,7 +106,7 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: metadata.namespace
-          image: kong/kubernetes-ingress-controller:1.2
+          image: kong/kubernetes-ingress-controller:1.3
           imagePullPolicy: IfNotPresent
           ports:
             - name: webhook

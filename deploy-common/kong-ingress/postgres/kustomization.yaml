@@ -6,4 +6,4 @@ resources:
   - postgres.yaml
   - konga.yaml
 patchesStrategicMerge:
-  - deployment-root.yaml
+  - deployment.yaml
