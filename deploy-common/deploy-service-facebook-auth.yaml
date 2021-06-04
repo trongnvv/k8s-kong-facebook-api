@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-facebook-auth
+  annotations:
+    konghq.com/plugins: plugin-custom-auth
 spec:
   ports:
     - port: 8032
@@ -16,6 +18,7 @@ kind: Deployment
 metadata:
   name: service-facebook-auth
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: service-facebook-auth

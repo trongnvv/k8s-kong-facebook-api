@@ -17,22 +17,6 @@ spec:
       port: 443
       protocol: TCP
       targetPort: 8443
-    # - name: proxy-admin
-    #   port: 8001
-    #   protocol: TCP
-    #   targetPort: 8001
-    # - name: status
-    #   port: 8100
-    #   protocol: TCP
-    #   targetPort: 8100
-    # - name: proxy-admin-ssl
-    #   port: 444
-    #   protocol: TCP
-    #   targetPort: 8444
-    # - name: gui-admin
-    #   port: 8002
-    #   protocol: TCP
-    #   targetPort: 8002
   selector:
     app: ingress-kong
   type: NodePort

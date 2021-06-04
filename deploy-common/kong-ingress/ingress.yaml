@@ -1,17 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: service-auth
+  name: facebook-app
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: plugin-custom-auth
 spec:
   rules:
     - http:
         paths:
-          - path: /api
+          - path: /api/v1/auth
             pathType: Prefix
             backend:
               service:
                 name: service-auth
                 port:
                   number: 8031
+          - path: /api/v1/facebook
+            pathType: Prefix
+            backend:
+              service:
+                name: service-facebook-auth
+                port:
+                  number: 8032

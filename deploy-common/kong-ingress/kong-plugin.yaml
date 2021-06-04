@@ -1,0 +1,8 @@
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: plugin-custom-auth
+config:
+  authorization_endpoint: service-auth:8031
+plugin: custom-auth
